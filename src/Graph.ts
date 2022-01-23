@@ -34,7 +34,7 @@ export class Graph {
   addEdge(source: Url, target: Url) {
     this.edges.push({
       source: this.urlToIDMap[source],
-      target: this.urlToIDMap[target],
+      target: this.urlToIDMap[target]
     });
   }
 

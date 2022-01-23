@@ -30,15 +30,15 @@ main([
   {
     url: '/series/typescript-learnings',
     markdown: `- [Typescript Learnings: Interesting Types](/series/typescript-learnings/interesting-types)
-      - [Typescript Learnings: Interesting Types](/series/typescript-learnings/test)`,
+      - [Typescript Learnings: Interesting Types](/series/typescript-learnings/test)`
   },
   {
     url: '/series/typescript-learnings/interesting-types',
     markdown:
-      '[Typescript Learnings: Interesting Types](/series/typescript-learnings/test)',
+      '[Typescript Learnings: Interesting Types](/series/typescript-learnings/test)'
   },
   {
     url: '/series/typescript-learnings/test',
-    markdown: '',
-  },
+    markdown: ''
+  }
 ]);
