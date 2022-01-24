@@ -16,29 +16,12 @@ function buildLink(postMarkdown: PostMarkdown, graph: Graph) {
     .process(postMarkdown.markdown);
 }
 
-function main(postMarkdowns: PostMarkdown[]) {
+export function main(postMarkdowns: PostMarkdown[]) {
   const graph = new Graph(postMarkdowns);
 
   for (let postMarkdown of postMarkdowns) {
     buildLink(postMarkdown, graph);
   }
 
-  console.log('graph', graph);
+  return graph;
 }
-
-main([
-  {
-    url: '/series/typescript-learnings',
-    markdown: `- [Typescript Learnings: Interesting Types](/series/typescript-learnings/interesting-types)
-      - [Typescript Learnings: Interesting Types](/series/typescript-learnings/test)`
-  },
-  {
-    url: '/series/typescript-learnings/interesting-types',
-    markdown:
-      '[Typescript Learnings: Interesting Types](/series/typescript-learnings/test)'
-  },
-  {
-    url: '/series/typescript-learnings/test',
-    markdown: ''
-  }
-]);
