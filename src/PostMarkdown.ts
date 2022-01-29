@@ -1,4 +1,5 @@
 export type PostMarkdown = {
   url: string;
-  markdown: string;
+  title: string;
+  content: string;
 };
