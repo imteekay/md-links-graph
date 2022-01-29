@@ -4,35 +4,56 @@ type Url = string;
 
 type Node = {
   id: number;
+  text: string;
   url: Url;
+  position: {
+    x: number;
+    y: number;
+  };
 };
 
 type Edge = {
-  source: number;
-  target: number;
+  source: string;
+  target: string;
 };
 
 type UrlToIDMap = {
-  [key: Url]: number;
+  [key: Url]: string;
 };
 
 export class Graph {
-  private nodes: Node[];
-  private edges: Edge[];
+  private _nodes: Node[];
+  private _edges: Edge[];
   private urlToIDMap: UrlToIDMap;
 
   constructor(postMarkdowns: PostMarkdown[]) {
-    this.nodes = [];
-    this.edges = [];
+    this._nodes = [];
+    this._edges = [];
     this.urlToIDMap = this.buildUrlToID(postMarkdowns);
   }
 
-  addNode(url: Url) {
-    this.nodes.push({ url, id: this.nodes.length });
+  get nodes() {
+    return this._nodes;
+  }
+
+  get edges() {
+    return this._edges;
+  }
+
+  addNode({ url, title }: PostMarkdown) {
+    this._nodes.push({
+      url,
+      text: title,
+      id: this._nodes.length,
+      position: {
+        x: Math.random() * 1500,
+        y: Math.random() * 1500
+      }
+    });
   }
 
   addEdge(source: Url, target: Url) {
-    this.edges.push({
+    this._edges.push({
       source: this.urlToIDMap[source],
       target: this.urlToIDMap[target]
     });
@@ -40,7 +61,10 @@ export class Graph {
 
   private buildUrlToID(postMarkdowns: PostMarkdown[]) {
     return postMarkdowns.reduce(
-      (urlToIDMap, { url }, index: number) => ({ ...urlToIDMap, [url]: index }),
+      (urlToIDMap, { url }, index: number) => ({
+        ...urlToIDMap,
+        [url]: index.toString()
+      }),
       {}
     );
   }
