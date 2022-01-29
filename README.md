@@ -64,6 +64,8 @@ graph.edges;
 ### Node
 
 ```ts
+type Url = string;
+
 type Node = {
   id: number;
   text: string;
@@ -77,5 +79,15 @@ type Node = {
 type Edge = {
   source: string;
   target: string;
+};
+```
+
+### Post input
+
+```ts
+type PostMarkdown = {
+  url: string;
+  title: string;
+  content: string;
 };
 ```
