@@ -35,6 +35,28 @@ const posts = [
 ];
 
 const graph = createGraph(posts);
+
+graph.nodes;
+// [
+//   {
+//     url: '/post-1',
+//     text: 'Post 1',
+//     id: 0
+//   },
+//   {
+//     url: '/post-2',
+//     text: 'Post 2',
+//     id: 1
+//   }
+// ]
+
+graph.edges;
+// [
+//   {
+//     source: '1',
+//     target: '0'
+//   }
+// ];
 ```
 
 ## Types
