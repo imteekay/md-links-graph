@@ -9,7 +9,7 @@ type IsAbleToAddEdge = (url: string) => boolean;
 function buildLink(
   postMarkdown: PostMarkdown,
   graph: Graph,
-  isAbleToAddEdge: IsAbleToAddEdge
+  isAbleToAddEdge: IsAbleToAddEdge = () => true
 ) {
   graph.addNode(postMarkdown);
 
@@ -26,7 +26,7 @@ function buildLink(
 
 export function createGraph(
   postMarkdowns: PostMarkdown[],
-  isAbleToAddEdge: IsAbleToAddEdge
+  isAbleToAddEdge: IsAbleToAddEdge = () => true
 ) {
   const graph = new Graph(postMarkdowns);
 
