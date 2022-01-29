@@ -3,7 +3,6 @@ export default {
   declaration: true,
   clean: true,
   rollup: {
-    esbuild: {},
-    emitCJS: true
+    esbuild: {}
   }
 };
