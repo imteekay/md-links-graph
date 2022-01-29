@@ -1,5 +1,7 @@
 # md-links-graph
 
+[![Npm package version](https://badgen.net/npm/v/@imtk/md-links-graph)](https://npmjs.com/package/@imtk/md-links-graph) [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+
 Create a graph data structure based on Markdown content and links.
 
 ## Install
@@ -91,3 +93,7 @@ type PostMarkdown = {
   content: string;
 };
 ```
+
+## License
+
+[MIT](./LICENSE) License © 2022 [TK](https://github.com/imteekay)
