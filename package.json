@@ -7,6 +7,12 @@
   "repository": "git@github.com:imteekay/md-links-graph.git",
   "author": "TK <leandrotk100@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "javascript",
+    "typescript",
+    "markdown",
+    "graph"
+  ],
   "scripts": {
     "dev": "nodemon",
     "build": "unbuild",
