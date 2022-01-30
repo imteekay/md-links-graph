@@ -1,25 +1,6 @@
 import { createGraph } from '..';
 import { Graph } from '../Graph';
 
-const excludedPages = [
-  '',
-  '/',
-  '/writings',
-  '/support',
-  '/rss.xml',
-  undefined,
-  null
-];
-
-function isValidLink(url: string) {
-  return (
-    !url.startsWith('https') &&
-    !url.startsWith('http') &&
-    !url.startsWith('www') &&
-    !excludedPages.includes(url)
-  );
-}
-
 describe('createGraph', () => {
   it('returns the links graph when receiving a list of posts', () => {
     const post1 = {
@@ -32,8 +13,8 @@ describe('createGraph', () => {
     const post2 = {
       url: '/series/typescript-learnings/interesting-types',
       title: 'Interesting types',
-      content:
-        '[Typescript Learnings: Interesting Types](/series/typescript-learnings/test)'
+      content: `- [Typescript Learnings: Interesting Types](/series/typescript-learnings/test)
+      - [Typescript Learnings Series](/series/typescript-learnings)`
     };
 
     const post3 = {
@@ -50,6 +31,11 @@ describe('createGraph', () => {
     expectedGraph.addEdge(post1.url, post3.url);
     expectedGraph.addEdge(post2.url, post3.url);
 
-    expect(createGraph(posts, isValidLink)).toEqual(expectedGraph);
+    const graph = createGraph(posts);
+
+    expect(graph.nodes).toEqual(expectedGraph.nodes);
+    expect(graph.edges).toEqual(expectedGraph.edges);
+    expect(graph.nodes.length).toEqual(3);
+    expect(graph.edges.length).toEqual(3);
   });
 });

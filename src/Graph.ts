@@ -8,24 +8,33 @@ type Node = {
   url: Url;
 };
 
+type Source = string;
+type Target = string;
+
 type Edge = {
-  source: string;
-  target: string;
+  source: Source;
+  target: Target;
 };
 
 type UrlToIDMap = {
   [key: Url]: string;
 };
 
+type Connections = {
+  [key: string]: boolean;
+};
+
 export class Graph {
   private _nodes: Node[];
   private _edges: Edge[];
   private urlToIDMap: UrlToIDMap;
+  private connections: Connections;
 
   constructor(postMarkdowns: PostMarkdown[]) {
     this._nodes = [];
     this._edges = [];
     this.urlToIDMap = this.buildUrlToID(postMarkdowns);
+    this.connections = {};
   }
 
   get nodes() {
@@ -44,11 +53,18 @@ export class Graph {
     });
   }
 
-  addEdge(source: Url, target: Url) {
+  addEdge(sourceUrl: Url, targetUrl: Url) {
+    const source = this.urlToIDMap[sourceUrl];
+    const target = this.urlToIDMap[targetUrl];
+
+    if (this.hasConnection(source, target)) return;
+
     this._edges.push({
-      source: this.urlToIDMap[source],
-      target: this.urlToIDMap[target]
+      source,
+      target
     });
+
+    this.updateConnections(source, target);
   }
 
   private buildUrlToID(postMarkdowns: PostMarkdown[]) {
@@ -58,6 +74,17 @@ export class Graph {
         [url]: index.toString()
       }),
       {}
+    );
+  }
+
+  private updateConnections(source: string, target: string) {
+    this.connections[`${source}-${target}`] = true;
+  }
+
+  private hasConnection(source: string, target: string) {
+    return (
+      this.connections[`${source}-${target}`] ||
+      this.connections[`${target}-${source}`]
     );
   }
 }
